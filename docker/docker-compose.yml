@@ -2,6 +2,8 @@ version: '3'
 services:
   app:
     build: ./phpfpm72
+    depends_on:
+      - db
     volumes:
       - ../public:/var/www/html
     container_name: app
@@ -17,3 +19,18 @@ services:
       - ../public:/var/www/html
       - ../logs/nginx:/var/log/nginx
     container_name: nginx
+
+  db:
+    build: ./mysql
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_DATABASE: development
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_pw
+      MYSQL_ROOT_PASSWORD: password
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ../data/mysql:/var/lib/mysql
+      - ../logs/mysql:/var/log/mysql
+    container_name: db
