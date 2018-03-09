@@ -5,7 +5,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ../public:/var/www/html
+      - ../application:/var/www/html
     container_name: app
 
   nginx:
@@ -16,7 +16,6 @@ services:
     depends_on:
       - app
     volumes:
-      - ../public:/var/www/html
       - ../logs/nginx:/var/log/nginx
     container_name: nginx
 
