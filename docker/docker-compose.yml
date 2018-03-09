@@ -8,6 +8,12 @@ services:
       - ../application:/var/www/html
     container_name: app
 
+  composer:
+    image: composer:latest
+    volumes:
+      - ../application:/application
+    working_dir: /application
+
   nginx:
     build: ./nginx
     ports:
