@@ -23,12 +23,7 @@ services:
     build: ./mysql
     ports:
       - "13306:3306"
-    environment:
-      MYSQL_DATABASE: development
-      MYSQL_USER: dev_user
-      MYSQL_PASSWORD: dev_pw
-      MYSQL_ROOT_PASSWORD: password
-      TZ: "Asia/Tokyo"
+    env_file: .env.develop
     volumes:
       - ../data/mysql:/var/lib/mysql
       - ../logs/mysql:/var/log/mysql
