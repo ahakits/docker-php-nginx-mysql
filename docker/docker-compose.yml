@@ -13,6 +13,7 @@ services:
     volumes:
       - ../application:/application
     working_dir: /application
+    container_name: composer
 
   nginx:
     build: ./nginx
@@ -34,3 +35,11 @@ services:
       - ../data/mysql:/var/lib/mysql
       - ../logs/mysql:/var/log/mysql
     container_name: db
+
+  cache:
+    build: ./redis
+    ports:
+      - "16379:6379"
+    volumes:
+      - ../data/redis:/data
+    container_name: cache
