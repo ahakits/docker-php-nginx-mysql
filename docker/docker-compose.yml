@@ -8,6 +8,16 @@ services:
       - ../application:/var/www/html
     container_name: app
 
+  cli:
+    build: ./phpfpm72
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    volumes:
+      - ../application:/var/www/html
+    container_name: cli
+
   composer:
     image: composer:latest
     volumes:
