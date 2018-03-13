@@ -15,4 +15,8 @@ RUN docker-php-ext-install mbstring
 RUN pecl install redis && \
         docker-php-ext-enable redis
 
+# Install xdebug
+RUN pecl install xdebug && \
+        docker-php-ext-enable xdebug
+
 RUN rm -rf /tmp/pear
