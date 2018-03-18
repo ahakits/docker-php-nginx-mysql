@@ -10,10 +10,6 @@ services:
 
   cli:
     build: ./phpfpm72
-    ports:
-      - "8000:80"
-    depends_on:
-      - db
     volumes:
       - ../application:/var/www/html
     container_name: cli
