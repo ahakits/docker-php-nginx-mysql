@@ -12,6 +12,8 @@ services:
     build: ./phpfpm72
     volumes:
       - ../application:/var/www/html
+    environment:
+      - PHP_IDE_CONFIG=serverName=docker
     container_name: cli
 
   composer:
