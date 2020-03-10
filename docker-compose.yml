@@ -1,17 +1,17 @@
 version: '3'
 services:
   app:
-    build: ./phpfpm72
+    build: ./php
     depends_on:
       - db
     volumes:
-      - ../application:/var/www/html
+      - ./php/application:/var/www/html
     container_name: app
 
   cli:
-    build: ./phpfpm72
+    build: ./php
     volumes:
-      - ../application:/var/www/html
+      - ./php/application:/var/www/html
     environment:
       - PHP_IDE_CONFIG=serverName=docker
     container_name: cli
@@ -19,7 +19,7 @@ services:
   composer:
     image: composer:latest
     volumes:
-      - ../application:/application
+      - ./php/application:/application
     working_dir: /application
     container_name: composer
 
@@ -31,7 +31,7 @@ services:
     depends_on:
       - app
     volumes:
-      - ../logs/nginx:/var/log/nginx
+      - ./logs/nginx:/var/log/nginx
     container_name: nginx
 
   db:
@@ -40,8 +40,8 @@ services:
       - "13306:3306"
     env_file: .env.develop
     volumes:
-      - ../data/mysql:/var/lib/mysql
-      - ../logs/mysql:/var/log/mysql
+      - ./data/mysql:/var/lib/mysql
+      - ./logs/mysql:/var/log/mysql
     container_name: db
 
   cache:
@@ -49,5 +49,5 @@ services:
     ports:
       - "16379:6379"
     volumes:
-      - ../data/redis:/data
+      - ./data/redis:/data
     container_name: cache

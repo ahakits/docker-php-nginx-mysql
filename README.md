@@ -8,11 +8,10 @@ Local Development Environment for PHP using Docker for Mac.
 
 ## Usage
 
-1. `cd ./docker`
-2. `docker-compose up -d`
-3. deploy your application to `./application`
-4. edit `application/compose.json`
-5. `docker-compose run composer install`
+1. `docker-compose up -d --build`
+2. deploy your application to `./php/application`
+3. edit `./php/application/compose.json`
+4. `docker-compose run composer install`
 
 
 * If you want to use Xdebug for Remote debug, change Debug port to `9001`.
